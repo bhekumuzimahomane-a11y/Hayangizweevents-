@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title data-i18n-key="contact.pageTitle">Contact Us | Haya Ngizwe Events</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Loading overlay styles */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 248, 248, 0.9);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+    
+    .loading-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .loading-spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #d4a574;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 15px;
+    }
+    
+    .loading-text {
+      font-size: 18px;
+      color: #333;
+      font-weight: 500;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    /* Hide the duplicate language selector */
+    .language-selector {
+      display: none;
+    }
+  </style>
+</head>
+<body style="background-color: #F7F7F7;">
+
+<!-- Loading Overlay -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-spinner"></div>
+  <div class="loading-text" data-i18n-key="loading.text">Loading language...</div>
+</div>
+
+  <header>
+    <a href="index.html" class="logo-container">
+      <img src="IMAGES/logo.png" alt="Haya Ngizwe Events Logo" class="logo-image">
+    </a>
+    <div class="menu-toggle" id="mobile-menu">
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+    </div>
+   <nav class="nav-menu">
+      <a href="index.html" data-i18n-key="nav.home">Home</a>
+      <a href="about.html" data-i18n-key="nav.about">About</a>
+      <a href="services.html" data-i18n-key="nav.services">Services</a>
+      <a href="events.html" data-i18n-key="nav.events">Events</a>
+      <a href="gallery.html" data-i18n-key="nav.gallery">Gallery</a>
+      <a href="blog.html" data-i18n-key="nav.blog">Blog</a>
+      <a href="contact.html" class="active" data-i18n-key="nav.contact">Contact</a>
+      
+      <select id="language-selector" style="margin-left:10px;padding:5px;border-radius:5px;">
+        <option value="en">English</option>
+        <option value="zu">IsiZulu</option>
+        <option value="st">Sesotho</option>
+      </select>
+      <div class="language-selector">
+        <button class="language-btn active" data-lang="en">EN</button>
+        <button class="language-btn" data-lang="zu">ZU</button>
+        <button class="language-btn" data-lang="st">ST</button>
+      </div>
+    </nav>
+  </header>
+
+  <div class="contact-container container">
+    <h1 data-i18n-key="contact.heading">Contact Us</h1>
+    <p style="text-align: center;" data-i18n-key="contact.tagline">Have a question or want to work with us? Drop us a line!</p>
+    <form name="contact" method="POST" action="https://formspree.io/f/xnngaqqw">
+      <label for="name" data-i18n-key="contact.label.name">Full Name</label><input type="text" id="name" name="name" required />
+      <label for="email" data-i18n-key="contact.label.email">Email Address</label><input type="email" id="email" name="email" required />
+      <label for="location" data-i18n-key="contact.label.location">Your Location</label><input type="text" id="location" name="location" placeholder="e.g. Tembisa, Gauteng" data-i18n-key="contact.placeholder.location"/>
+      <label for="message" data-i18n-key="contact.label.message">Your Message</label><textarea id="message" name="message" rows="6" required></textarea>
+      <button type="submit" data-i18n-key="contact.button.send">Send Message</button>
+    </form>
+    <div class="map">
+      <h3 style="text-align:center; color:#8e0000;" data-i18n-key="contact.officeHeading">Our Office</h3>
+      <iframe src="https://www.google.com/maps?q=16+Lerubisi+Street,+Mostu,+Tembisa,+1632&output=embed"></iframe>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 Haya Ngizwe Events · <br>
+    <span data-i18n-key="footer.address">Located at 16 Lerubisi Street, Mostu, Tembisa 1632</span><br>
+    <span data-i18n-key="footer.contactInfo">hayangizwe@gmail.com · 065 916 8844</span><br>
+  </footer>
+
+  <script>
+    const menu = document.querySelector('#mobile-menu');
+    const navMenu = document.querySelector('.nav-menu');
+    menu.addEventListener('click', () => navMenu.classList.toggle('active'));
+  </script>
+
+  <!-- MULTILINGUAL SCRIPT -->
+  <script>
+    // First, let's collect the original English text from the HTML
+    function collectOriginalEnglishText() {
+      const elements = document.querySelectorAll("[data-i18n-key]");
+      const originalTexts = {};
+      
+      elements.forEach(el => {
+        const key = el.dataset.i18nKey;
+        // For input placeholders, we need to check the 'placeholder' attribute
+        if (el.tagName === 'INPUT' && el.hasAttribute('placeholder')) {
+          originalTexts[key] = el.getAttribute('placeholder');
+        } else if (el.innerText && el.innerText.trim()) {
+          originalTexts[key] = el.innerText;
+        }
+      });
+      
+      return originalTexts;
+    }
+
+    const originalEnglish = collectOriginalEnglishText();
+
+    const translations = {
+      en: originalEnglish, // Use the original HTML text for English
+
+      zu: {
+        "nav.home":"Ekhaya",
+        "nav.about":"Mayelana",
+        "nav.services":"Izinsiza",
+        "nav.events":"Imicimbi",
+        "nav.gallery":"Izithombe",
+        "nav.blog":"Ibhulogi",
+        "nav.contact":"Xhumana",
+        "contact.pageTitle":"Xhumana Nathi | I-Haya Ngizwe Events",
+        "contact.heading":"Xhumana Nathi",
+        "contact.tagline":"Unombuzo noma ufuna ukusebenza nathi? Sithumele umlayezo!",
+        "contact.label.name":"Igama Eligcwele",
+        "contact.label.email":"Ikheli Le-imeyili",
+        "contact.label.location":"Indawo Yakho",
+        "contact.placeholder.location":"isib. Tembisa, Gauteng",
+        "contact.label.message":"Umlayezo Wakho",
+        "contact.button.send":"Thumela Umlayezo",
+        "contact.officeHeading":"Ihhovisi Lethu",
+        "footer.address":"Itholaka ku-16 Lerubisi Street, Mostu, Tembisa 1632",
+        "footer.contactInfo":"hayangizwe@gmail.com · 065 916 8844",
+        "loading.text":"Ilayisha ulimi..."
+      },
+
+      st: {
+        "nav.home":"Lehae",
+        "nav.about":"Mabapi",
+        "nav.services":"Ditshebeletso",
+        "nav.events":"Diketsahalo",
+        "nav.gallery":"Gallery",
+        "nav.blog":"Blog",
+        "nav.contact":"Ikopanye",
+        "contact.pageTitle":"Ikopanye Le Rona | Haya Ngizwe Events",
+        "contact.heading":"Ikopanye Le Rona",
+        "contact.tagline":"O na le potso kapa o batla ho sebetsa le rona? Re romele molaetsa!",
+        "contact.label.name":"Lebitso le Felletseng",
+        "contact.label.email":"Aterese ya Imeile",
+        "contact.label.location":"Sebaka sa Hao",
+        "contact.placeholder.location":"mohl. Tembisa, Gauteng",
+        "contact.label.message":"Molaetsa wa Hao",
+        "contact.button.send":"Romela Molaetsa",
+        "contact.officeHeading":"Ofisi ya Rona",
+        "footer.address":"E fumaneha ho 16 Lerubisi Street, Mostu, Tembisa 1632",
+        "footer.contactInfo":"hayangizwe@gmail.com · 065 916 8844",
+        "loading.text":"Ho lata puo..."
+      }
+    };
+
+    // Add loading text to English translations if not already there
+    if (!translations.en["loading.text"]) {
+      translations.en["loading.text"] = "Loading language...";
+    }
+
+    function applyLanguage(lang){
+      document.querySelectorAll("[data-i18n-key]").forEach(el=>{
+        const key = el.dataset.i18nKey;
+        if(translations[lang] && translations[lang][key]) {
+            // For input placeholders, set the placeholder attribute
+            if (el.tagName === 'INPUT' && el.hasAttribute('placeholder')) {
+                el.setAttribute('placeholder', translations[lang][key]);
+            } else {
+                el.innerText = translations[lang][key];
+            }
+        }
+      });
+    }
+
+    function showLoading() {
+      const loadingOverlay = document.getElementById('loadingOverlay');
+      loadingOverlay.classList.add('active');
+    }
+
+    function hideLoading() {
+      const loadingOverlay = document.getElementById('loadingOverlay');
+      loadingOverlay.classList.remove('active');
+    }
+
+    // Language change handler
+    function changeLanguage(lang) {
+      // Close mobile menu
+      navMenu.classList.remove('active');
+      
+      // Show loading overlay
+      showLoading();
+      
+      // Update language in localStorage
+      localStorage.setItem("language", lang);
+      
+      // Apply language after a short delay to show loading effect
+      setTimeout(() => {
+        applyLanguage(lang);
+        
+        // Update selector value
+        selector.value = lang;
+        
+        // Hide loading overlay
+        hideLoading();
+      }, 600); // 600ms delay to show loading effect
+    }
+
+    // Initialize
+    const selector = document.getElementById("language-selector");
+    const savedLang = localStorage.getItem("language") || "en";
+    selector.value = savedLang;
+
+    // Only apply language if it's not English (English is already in the HTML)
+    if (savedLang !== "en") {
+      applyLanguage(savedLang);
+    }
+
+    // Event listener for language selector
+    selector.addEventListener("change", (e)=>{
+      const selectedLang = e.target.value;
+      changeLanguage(selectedLang);
+    });
+
+    // Optional: If you want to use the button language selector too
+    document.querySelectorAll('.language-btn').forEach(button => {
+      button.addEventListener('click', (e) => {
+        const lang = e.target.getAttribute('data-lang');
+        changeLanguage(lang);
+      });
+    });
+  </script>
+
+</body>
+</html>
