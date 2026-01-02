@@ -8,6 +8,136 @@
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <style>
+  /* ADD THIS AT THE BEGINNING OF YOUR STYLE BLOCK - Prevents layout shifts while keeping all animations */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Prevent content from moving during animations by pre-reserving space */
+.collaborate-hero,
+.collaboration-types,
+.collab-grid,
+.collab-card,
+.collaborate-form-container,
+.advanced-form,
+.form-section,
+.form-group,
+.checkbox-group,
+.submit-section {
+    will-change: transform;
+    contain: layout;
+}
+    /* CENTER ALL CONTENT AND PREVENT OVERLAPPING */
+body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+}
+
+.collaborate-form-container {
+    max-width: 900px !important;
+    margin: 3rem auto !important;
+    padding: 0 20px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.advanced-form {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* Ensure form elements don't overflow */
+.form-control, select.form-control, textarea.form-control {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.form-row {
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* Center all containers */
+.container, .collab-grid, .collaboration-types > .container {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 0 20px !important;
+}
+
+/* Fix header and footer to prevent overflow */
+header {
+    max-width: 100% !important;
+    overflow: hidden !important;
+}
+
+footer {
+    max-width: 100% !important;
+    text-align: center !important;
+    padding: 20px !important;
+    box-sizing: border-box !important;
+}
+
+/* Prevent any element from causing horizontal scroll */
+* {
+    max-width: 100% !important;
+}
+
+/* Mobile adjustments to prevent overlap */
+@media (max-width: 768px) {
+    .collaborate-hero {
+        padding: 3rem 20px !important;
+    }
+    
+    .collaboration-types {
+        padding: 3rem 20px !important;
+    }
+    
+    .collaborate-form-container {
+        padding: 0 15px !important;
+        margin: 2rem auto !important;
+    }
+    
+    .advanced-form {
+        padding: 2rem !important;
+    }
+    
+    .form-row {
+        gap: 1rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .collaborate-hero h1 {
+        font-size: 2rem !important;
+        padding: 0 10px !important;
+    }
+    
+    .collaborate-hero p {
+        font-size: 1rem !important;
+        padding: 0 10px !important;
+    }
+    
+    .advanced-form {
+        padding: 1.5rem !important;
+    }
+    
+    .collab-card {
+        padding: 1.5rem !important;
+    }
+}
+
+/* Force elements to maintain their rendered position */
+.animate-text,
+.animate-card,
+.form-header,
+.collab-grid,
+.form-row {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
     /* Custom styles for collaborate page */
     .collaborate-hero {
       background: linear-gradient(rgba(142, 0, 0, 0.85), rgba(142, 0, 0, 0.9)), url('IMAGES/collaborate-bg.jpg');
@@ -690,7 +820,7 @@
       <p>Fill out the form below with details about your collaboration idea. Our team will review and get back to you within 2-3 business days.</p>
     </div>
     
-    <form class="advanced-form" id="collaborationForm" action="hngizwe@gmail.com" method="POST" enctype="multipart/form-data">
+  <form name="contact" method="POST" action="https://formspree.io/f/xnngaqqw">
       <!-- Personal Information Section -->
       <div class="form-section">
         <div class="section-title">

@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Terms & Conditions | Haya Ngizwe Events</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    /* Reuse styles from privacy page with some modifications */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      overflow-x: hidden;
+      background-color: #F9F9F9;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #8e0000 0%, #a10000 100%);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    }
+    
+    .logo-container {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    
+    .logo-image {
+      height: 60px;
+      width: auto;
+    }
+    
+    .nav-menu {
+      display: flex;
+      gap: 2rem;
+    }
+    
+    .nav-menu a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+    }
+    
+    .nav-menu a:hover {
+      background-color: rgba(255,255,255,0.1);
+      transform: translateY(-2px);
+    }
+    
+    .nav-menu a.active {
+      background-color: rgba(212, 165, 116, 0.2);
+      border-left: 3px solid #d4a574;
+    }
+    
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    
+    .menu-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      margin: 3px 0;
+      transition: 0.3s;
+    }
+    
+    /* Terms Hero Section */
+    .terms-hero {
+      background: linear-gradient(rgba(212, 165, 116, 0.85), rgba(212, 165, 116, 0.9)), url('IMAGES/terms-bg.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 4rem 2rem;
+      text-align: center;
+      min-height: 30vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .terms-hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+      color: #8e0000;
+    }
+    
+    .terms-hero p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      color: #444;
+    }
+    
+    /* Main Content */
+    .terms-container {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+    }
+    
+    .terms-content {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+      padding: 3rem;
+      margin-bottom: 3rem;
+    }
+    
+    /* Table of Contents */
+    .toc {
+      background: linear-gradient(135deg, #f8f5f0 0%, #fcfaf5 100%);
+      border-left: 4px solid #d4a574;
+      padding: 2rem;
+      border-radius: 10px;
+      margin-bottom: 3rem;
+    }
+    
+    .toc h3 {
+      color: #8e0000;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .toc ol {
+      list-style: none;
+      padding: 0;
+      counter-reset: item;
+    }
+    
+    .toc li {
+      margin-bottom: 1rem;
+      padding-left: 2rem;
+      position: relative;
+      counter-increment: item;
+    }
+    
+    .toc li:before {
+      content: counter(item) ".";
+      color: #d4a574;
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+    
+    .toc a {
+      color: #444;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .toc a:hover {
+      color: #8e0000;
+      text-decoration: underline;
+    }
+    
+    /* Terms Sections */
+    .terms-section {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .terms-section:last-child {
+      border-bottom: none;
+    }
+    
+    .terms-section h2 {
+      color: #8e0000;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #ffd6d6;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .terms-section h2 i {
+      color: #d4a574;
+    }
+    
+    .terms-section h3 {
+      color: #444;
+      font-size: 1.3rem;
+      margin: 2rem 0 1rem;
+    }
+    
+    .terms-section h4 {
+      color: #666;
+      font-size: 1.1rem;
+      margin: 1.5rem 0 0.5rem;
+    }
+    
+    .terms-section p {
+      margin-bottom: 1rem;
+      color: #555;
+    }
+    
+    .terms-section ul, .terms-section ol {
+      margin: 1rem 0 1rem 2rem;
+      color: #555;
+    }
+    
+    .terms-section li {
+      margin-bottom: 0.5rem;
+    }
+    
+    /* Legal Boxes */
+    .legal-box {
+      background: #f8f9fa;
+      border: 2px solid #e9ecef;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 8px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+    }
+    
+    .legal-box.warning {
+      border-color: #ffc107;
+      background: #fff8e1;
+    }
+    
+    .legal-box.important {
+      border-color: #8e0000;
+      background: #fff8f8;
+    }
+    
+    /* Definitions */
+    .definition-box {
+      background: #f0f7ff;
+      border-left: 4px solid #007bff;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 8px;
+    }
+    
+    .definition-box dt {
+      font-weight: bold;
+      color: #0056b3;
+      margin-top: 1rem;
+    }
+    
+    .definition-box dd {
+      margin-left: 1rem;
+      margin-bottom: 1rem;
+      color: #666;
+    }
+    
+    /* Agreement Section */
+    .agreement-section {
+      background: linear-gradient(135deg, #f8f5f0 0%, #f5f0e8 100%);
+      border-radius: 10px;
+      padding: 2rem;
+      text-align: center;
+      margin-top: 3rem;
+      border: 2px solid #d4a574;
+    }
+    
+    .agreement-section h3 {
+      color: #8e0000;
+      margin-bottom: 1.5rem;
+    }
+    
+    .acceptance-box {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      margin: 2rem auto;
+      max-width: 600px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    
+    /* Footer */
+    footer {
+      background: #8e0000;
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: flex;
+      }
+      
+      .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #8e0000;
+        padding: 1rem;
+        z-index: 1000;
+      }
+      
+      .nav-menu.active {
+        display: flex;
+      }
+      
+      .terms-hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .terms-content {
+        padding: 2rem 1.5rem;
+      }
+      
+      .terms-container {
+        padding: 0 1rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .terms-hero h1 {
+        font-size: 2rem;
+      }
+      
+      .terms-hero {
+        padding: 3rem 1rem;
+      }
+      
+      .terms-section h2 {
+        font-size: 1.5rem;
+      }
+      
+      .legal-box {
+        font-size: 0.8rem;
+        padding: 1rem;
+      }
+    }
+    
+    /* Print Styles */
+    @media print {
+      .terms-hero {
+        background: #f8f5f0 !important;
+        -webkit-print-color-adjust: exact;
+      }
+      
+      .toc, .agreement-section {
+        page-break-inside: avoid;
+      }
+      
+      footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo-container">
+      <img src="IMAGES/logo.png" alt="Haya Ngizwe Events Logo" class="logo-image">
+    </a>
+    <div class="menu-toggle" id="mobile-menu">
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+    </div>
+    <nav class="nav-menu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="events.html">Events</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="collaborate.html">Collaborate</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html" class="active">Terms & Conditions</a>
+    </nav>
+  </header>
+
+  <section class="terms-hero">
+    <h1>Terms & Conditions</h1>
+    <p>Please read these terms carefully before using our services or submitting collaboration proposals.</p>
+  </section>
+
+  <div class="terms-container">
+    <div class="toc">
+      <h3><i class="fas fa-list-ol"></i> Table of Contents</h3>
+      <ol>
+        <li><a href="#acceptance">Acceptance of Terms</a></li>
+        <li><a href="#definitions">Definitions</a></li>
+        <li><a href="#services">Our Services</a></li>
+        <li><a href="#user-obligations">User Obligations</a></li>
+        <li><a href="#collaborations">Collaboration Proposals</a></li>
+        <li><a href="#intellectual-property">Intellectual Property</a></li>
+        <li><a href="#payments">Payments and Donations</a></li>
+        <li><a href="#liability">Limitation of Liability</a></li>
+        <li><a href="#indemnification">Indemnification</a></li>
+        <li><a href="#termination">Termination</a></li>
+        <li><a href="#governing-law">Governing Law</a></li>
+        <li><a href="#disputes">Dispute Resolution</a></li>
+        <li><a href="#changes">Changes to Terms</a></li>
+        <li><a href="#contact">Contact Information</a></li>
+      </ol>
+    </div>
+
+    <div class="terms-content">
+      <section id="acceptance" class="terms-section">
+        <h2><i class="fas fa-check-circle"></i> 1. Acceptance of Terms</h2>
+        <p>By accessing or using the Haya Ngizwe Events website (<a href="https://hayangizweevents.com">hayangizweevents.com</a>) and services, you agree to be bound by these Terms & Conditions. If you do not agree to all terms, you may not access or use our services.</p>
+        
+        <div class="legal-box important">
+          <p><strong>IMPORTANT:</strong> These terms constitute a legally binding agreement between you and Haya Ngizwe Events. By using our website or submitting information through our forms, you acknowledge that you have read, understood, and agree to be bound by these terms.</p>
+        </div>
+      </section>
+
+      <section id="definitions" class="terms-section">
+        <h2><i class="fas fa-book"></i> 2. Definitions</h2>
+        
+        <div class="definition-box">
+          <dl>
+            <dt>"We," "Us," "Our":</dt>
+            <dd>Refers to Haya Ngizwe Events, its owners, employees, agents, and representatives.</dd>
+            
+            <dt>"You," "User":</dt>
+            <dd>Refers to any person or entity accessing or using our website or services.</dd>
+            
+            <dt>"Services":</dt>
+            <dd>Refers to all services offered by Haya Ngizwe Events, including event planning, collaboration opportunities, and related services.</dd>
+            
+            <dt>"Proposal":</dt>
+            <dd>Refers to any collaboration, sponsorship, or partnership proposal submitted through our website.</dd>
+            
+            <dt>"Content":</dt>
+            <dd>Refers to all text, images, videos, graphics, and other materials on our website.</dd>
+            
+            <dt>"Event":</dt>
+            <dd>Refers to any event organized, co-organized, or promoted by Haya Ngizwe Events.</dd>
+          </dl>
+        </div>
+      </section>
+
+      <section id="services" class="terms-section">
+        <h2><i class="fas fa-calendar-alt"></i> 3. Our Services</h2>
+        
+        <h3>3.1 Service Description</h3>
+        <p>Haya Ngizwe Events provides event planning, management, and promotion services, including but not limited to:</p>
+        <ul>
+          <li>Cultural and artistic event organization</li>
+          <li>Artist collaboration and feature opportunities</li>
+          <li>Event sponsorship and partnership coordination</li>
+          <li>Community engagement initiatives</li>
+          <li>Media and production services</li>
+        </ul>
+        
+        <h3>3.2 Service Availability</h3>
+        <p>We reserve the right to:</p>
+        <ul>
+          <li>Modify, suspend, or discontinue any service at any time</li>
+          <li>Refuse service to anyone for any reason at our discretion</li>
+          <li>Limit quantities of services offered</li>
+        </ul>
+        
+        <h3>3.3 Accuracy of Information</h3>
+        <p>While we strive for accuracy, we do not warrant that service descriptions, pricing, or other content on our site is complete, reliable, current, or error-free.</p>
+      </section>
+
+      <section id="user-obligations" class="terms-section">
+        <h2><i class="fas fa-user-shield"></i> 4. User Obligations</h2>
+        
+        <h3>4.1 User Conduct</h3>
+        <p>You agree not to:</p>
+        <ul>
+          <li>Use our services for any unlawful purpose</li>
+          <li>Submit false, misleading, or fraudulent information</li>
+          <li>Impersonate any person or entity</li>
+          <li>Upload viruses or malicious code</li>
+          <li>Interfere with or disrupt the integrity or performance of our services</li>
+          <li>Attempt to gain unauthorized access to our systems</li>
+          <li>Harass, threaten, or intimidate our staff or other users</li>
+        </ul>
+        
+        <h3>4.2 Account Responsibility</h3>
+        <p>If you create an account with us, you are responsible for:</p>
+        <ul>
+          <li>Maintaining the confidentiality of your account credentials</li>
+          <li>All activities that occur under your account</li>
+          <li>Notifying us immediately of any unauthorized use</li>
+        </ul>
+      </section>
+
+      <section id="collaborations" class="terms-section">
+        <h2><i class="fas fa-handshake"></i> 5. Collaboration Proposals</h2>
+        
+        <h3>5.1 Proposal Submission</h3>
+        <p>By submitting a collaboration proposal, you acknowledge that:</p>
+        <ul>
+          <li>Submission does not guarantee acceptance or collaboration</li>
+          <li>We have no obligation to review or respond to your proposal</li>
+          <li>We may reject proposals for any reason without explanation</li>
+          <li>Proposals are not confidential (unless otherwise agreed in writing)</li>
+        </ul>
+        
+        <div class="legal-box warning">
+          <p><strong>NOTE:</strong> Do not submit confidential or proprietary information in your initial proposal. We recommend discussing confidentiality agreements before sharing sensitive information.</p>
+        </div>
+        
+        <h3>5.2 Review Process</h3>
+        <p>Our standard review process includes:</p>
+        <ul>
+          <li>Initial screening within 2-3 business days</li>
+          <li>Detailed review within 2 weeks for promising proposals</li>
+          <li>Contact only if we wish to pursue the collaboration</li>
+        </ul>
+        
+        <h3>5.3 Proposal Ownership</h3>
+        <p>You retain ownership of the ideas in your proposal. However, by submitting, you grant us the right to review and consider your proposal without obligation.</p>
+      </section>
+
+      <section id="intellectual-property" class="terms-section">
+        <h2><i class="fas fa-copyright"></i> 6. Intellectual Property</h2>
+        
+        <h3>6.1 Our Intellectual Property</h3>
+        <p>All content on our website, including logos, graphics, text, and designs, is our property or licensed to us and is protected by copyright and trademark laws.</p>
+        
+        <h3>6.2 User Content</h3>
+        <p>By submitting content to us (including proposals, photos, videos), you grant us a non-exclusive, worldwide, royalty-free license to use, display, and distribute the content in connection with our services.</p>
+        
+        <h3>6.3 Copyright Complaints</h3>
+        <p>If you believe your copyrighted work has been infringed, please contact us with:</p>
+        <ul>
+          <li>A description of the copyrighted work</li>
+          <li>The location of the infringing material</li>
+          <li>Your contact information</li>
+          <li>A statement of good faith belief</li>
+          <li>A statement made under penalty of perjury</li>
+        </ul>
+      </section>
+
+      <section id="payments" class="terms-section">
+        <h2><i class="fas fa-credit-card"></i> 7. Payments and Donations</h2>
+        
+        <h3>7.1 Payment Terms</h3>
+        <p>All payments for services are due as specified in individual agreements. Late payments may incur interest charges.</p>
+        
+        <h3>7.2 Donations</h3>
+        <p>Donations made through our website:</p>
+        <ul>
+          <li>Are voluntary and non-refundable</li>
+          <li>May be tax-deductible (consult your tax advisor)</li>
+          <li>Will be used to support our mission as described</li>
+          <li>May be allocated to general funds if specific purpose is unavailable</li>
+        </ul>
+        
+        <h3>7.3 Refund Policy</h3>
+        <p>Refunds are handled on a case-by-case basis:</p>
+        <ul>
+          <li>Event ticket refunds: Subject to event-specific policies</li>
+          <li>Service fees: Non-refundable after work has commenced</li>
+          <li>Donations: Generally non-refundable</li>
+        </ul>
+      </section>
+
+      <section id="liability" class="terms-section">
+        <h2><i class="fas fa-exclamation-triangle"></i> 8. Limitation of Liability</h2>
+        
+        <div class="legal-box important">
+          <p><strong>LIMITATION OF LIABILITY:</strong> To the maximum extent permitted by law, Haya Ngizwe Events shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including loss of profits, data, use, goodwill, or other intangible losses.</p>
+        </div>
+        
+        <h3>8.1 Maximum Liability</h3>
+        <p>Our maximum liability to you for any claim shall not exceed the amount you paid us for the services in question, or R1,000, whichever is greater.</p>
+        
+        <h3>8.2 Event Disclaimer</h3>
+        <p>Attendance at our events is at your own risk. We are not liable for:</p>
+        <ul>
+          <li>Personal injury or property damage</li>
+          <li>Acts of other attendees or third parties</li>
+          <li>Event cancellations or modifications due to unforeseen circumstances</li>
+        </ul>
+      </section>
+
+      <section id="indemnification" class="terms-section">
+        <h2><i class="fas fa-gavel"></i> 9. Indemnification</h2>
+        <p>You agree to indemnify, defend, and hold harmless Haya Ngizwe Events and its affiliates from any claims, liabilities, damages, losses, and expenses arising from:</p>
+        <ul>
+          <li>Your use of our services</li>
+          <li>Your violation of these terms</li>
+          <li>Your violation of any rights of a third party</li>
+          <li>Any content you submit</li>
+        </ul>
+      </section>
+
+      <section id="termination" class="terms-section">
+        <h2><i class="fas fa-ban"></i> 10. Termination</h2>
+        
+        <h3>10.1 By Us</h3>
+        <p>We may terminate or suspend your access to our services immediately, without prior notice, for conduct that we believe:</p>
+        <ul>
+          <li>Violates these terms</li>
+          <li>Is harmful to other users or our business</li>
+          <li>Violates applicable laws or regulations</li>
+        </ul>
+        
+        <h3>10.2 By You</h3>
+        <p>You may stop using our services at any time. Termination does not relieve you of obligations incurred prior to termination.</p>
+        
+                <h3>10.3 Survival</h3>
+        <p>Sections on intellectual property, liability, indemnification, and governing law shall survive termination.</p>
+      </section>
+
+      <section id="governing-law" class="terms-section">
+        <h2><i class="fas fa-balance-scale"></i> 11. Governing Law</h2>
+        <p>These terms shall be governed by and construed in accordance with the laws of South Africa, without regard to its conflict of law provisions.</p>
+        
+        <h3>11.1 Jurisdiction</h3>
+        <p>Any legal action or proceeding shall be brought exclusively in the courts located in South Africa, and you consent to personal jurisdiction in such courts.</p>
+      </section>
+
+      <section id="disputes" class="terms-section">
+        <h2><i class="fas fa-handshake"></i> 12. Dispute Resolution</h2>
+        
+        <h3>12.1 Informal Resolution</h3>
+        <p>Before initiating formal proceedings, you agree to attempt to resolve disputes informally by contacting us at <a href="mailto:legal@hayangizweevents.com">legal@hayangizweevents.com</a>.</p>
+        
+        <h3>12.2 Mediation</h3>
+        <p>If informal resolution fails, parties agree to attempt mediation through a mutually agreed mediator before pursuing litigation.</p>
+        
+        <h3>12.3 Class Action Waiver</h3>
+        <p>You agree to resolve disputes on an individual basis and waive any right to participate in class actions.</p>
+      </section>
+
+      <section id="changes" class="terms-section">
+        <h2><i class="fas fa-sync-alt"></i> 13. Changes to Terms</h2>
+        <p>We reserve the right to modify these terms at any time. We will notify users of material changes by:</p>
+        <ul>
+          <li>Posting the new terms on our website</li>
+          <li>Updating the "Last Updated" date</li>
+          <li>Where appropriate, sending email notification</li>
+        </ul>
+        
+        <p>Your continued use of our services after changes constitutes acceptance of the new terms.</p>
+      </section>
+
+      <section id="contact" class="terms-section">
+        <h2><i class="fas fa-headset"></i> 14. Contact Information</h2>
+        
+        <div class="agreement-section">
+          <h3>Agreement to Terms</h3>
+          <p>By using our website and services, you acknowledge that you have read, understood, and agree to be bound by these Terms & Conditions.</p>
+          
+          <div class="acceptance-box">
+            <h4>Legal Contact Information</h4>
+            <p><strong>Legal Department</strong></p>
+            <p>Email: legal@hayangizweevents.com</p>
+            <p>Phone: +27 65 916 8844</p>
+            <p>Address: Haya Ngizwe Events, South Africa</p>
+            
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">
+              For immediate concerns regarding events or services, please contact our main office at hayangizwe@gmail.com
+            </p>
+          </div>
+          
+          <p style="margin-top: 2rem;">
+            <strong>Need clarification?</strong> Contact us before submitting proposals or using our services if you have questions about these terms.
+          </p>
+        </div>
+      </section>
+      
+      <div class="last-updated" style="text-align: center; color: #777; font-size: 0.9rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #eee;">
+        <p><strong>Effective Date:</strong> January 1, 2025</p>
+        <p><strong>Last Updated:</strong> March 15, 2025</p>
+        <p><strong>Document Version:</strong> 2.0</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 Haya Ngizwe Events · <br>
+    Creating Moments to Cherish Forever · <br>
+    <a href="privacy.html" style="color: #d4a574; text-decoration: none;">Privacy Policy</a> | 
+    <a href="terms.html" style="color: #d4a574; text-decoration: none;">Terms & Conditions</a>
+  </footer>
+    <script>
+    // Mobile Menu Toggle
+    const menu = document.querySelector('#mobile-menu');
+    const navMenu = document.querySelector('.nav-menu');
+    menu.addEventListener('click', () => navMenu.classList.toggle('active'));
+
+    // Smooth scrolling for table of contents links
+    document.querySelectorAll('.toc a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Highlight current section in view
+    const sections = document.querySelectorAll('.terms-section');
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -70% 0px',
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          document.querySelectorAll('.toc a').forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${id}`) {
+              link.classList.add('active');
+              link.style.color = '#8e0000';
+              link.style.fontWeight = 'bold';
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+
+    // Print functionality
+    const printButton = document.createElement('button');
+    printButton.innerHTML = '<i class="fas fa-print"></i> Print Terms';
+    printButton.style.cssText = `
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #d4a574;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    `;
+    
+    printButton.addEventListener('click', () => window.print());
+    document.body.appendChild(printButton);
+
+    // Agreement acknowledgment
+    const agreeButton = document.createElement('button');
+    agreeButton.innerHTML = '<i class="fas fa-thumbs-up"></i> I Accept Terms';
+    agreeButton.style.cssText = `
+      position: fixed;
+      bottom: 60px;
+      right: 20px;
+      background: #8e0000;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    `;
+    
+    agreeButton.addEventListener('click', () => {
+      alert('Thank you for accepting our Terms & Conditions. Your acknowledgment has been noted.');
+      agreeButton.style.display = 'none';
+      localStorage.setItem('termsAccepted', 'true');
+    });
+    
+    // Only show accept button if not already accepted
+    if (!localStorage.getItem('termsAccepted')) {
+      document.body.appendChild(agreeButton);
+    }
+  </script>
+</body>
+</html>
